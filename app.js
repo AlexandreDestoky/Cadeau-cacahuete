@@ -4,12 +4,15 @@ const formulaire = document.querySelector(".formulaire");
 const gant = document.querySelector(".gant");
 const papier = document.querySelector(".papier");
 const affichage = document.querySelector(".affichage");
+const affichageText = document.querySelector(".affichage p");
+const btnOui = document.querySelector(".oui");
 
 //variable de travail
 let prenoms = document.querySelectorAll("input[type=text]");
 let tabPrenoms = [];
 let nbrPrenoms = prenoms.length;
 let tabPrenomsCadeau; // contient les objets associés
+let cpt = 0;
 
 //FONCTION D'ASSOCIATION DU PIOCHEUR ET DE LA PERSONNE QU'IL PIOCHE
 let cadeau = (tableau) => {
@@ -20,7 +23,7 @@ let cadeau = (tableau) => {
   let tabCadeau = [];
   let nbrPrenoms = tableau.length;
   let nbrRandom;
-  
+
   for (let i = 0; i < nbrPrenoms; i++) {
     let cadeauPour;
     let piocheur = tableau[i]; //Attribution des piocheurs en suivant le tableau
@@ -47,47 +50,64 @@ let cadeau = (tableau) => {
 };
 
 //Ajout d'un input quand on clique sur le +
-ajouter.addEventListener("click",()=> {
+ajouter.addEventListener("click", () => {
   let input = document.createElement("input");
   nbrPrenoms++;
   input.type = "text";
   input.placeholder = `Prénom ${nbrPrenoms}`;
   input.name = `Prenom${nbrPrenoms}`;
   input.id = `Prenom${nbrPrenoms}`;
-  formulaire.insertBefore(input,ajouter);
-})
-
-
+  formulaire.insertBefore(input, ajouter);
+  input.focus();
+});
 
 //Quand on envoie le formulaire
-formulaire.addEventListener("submit",(e)=> {
+formulaire.addEventListener("submit", (e) => {
   e.preventDefault();
   prenoms = document.querySelectorAll("input[type=text]");
-  prenoms.forEach(prenom=> {
+  prenoms.forEach((prenom) => {
     //on envoie qui si il y a une valeur dans l'input
-    if(prenom.value) {
-      tabPrenoms.push(prenom.value); 
+    if (prenom.value) {
+      tabPrenoms.push(prenom.value);
     }
-  })
-  if(tabPrenoms.length < 2) {
+  });
+  if (tabPrenoms.length < 2) {
     alert("veuillez rentrez au moins 2 prénoms");
     tabPrenoms = [];
   } else {
     console.log(tabPrenoms);
-    console.log(cadeau(tabPrenoms));
     tabPrenomsCadeau = cadeau(tabPrenoms);
+    console.log(tabPrenomsCadeau);
     formulaire.style.display = "none";
-    setTimeout(animation,500);
+    affichage.style.display = "block";
+    affichageText.textContent = `🎄🎅${tabPrenomsCadeau[cpt].piocheur}, es-tu seul devant l'ordinateur ?🎅🎄`;
   }
-})
-
+});
 
 let animation = () => {
-  gant.style.opacity = "1";
-  papier.style.opacity = "1";
-  setTimeout(()=> {
+  gant.style.display = "block";
+  papier.style.display = "block";
+  affichage.style.display = "none";
+  setTimeout(() => {
     papier.style.top = "0px";
-    papier.textContent = tabPrenomsCadeau[0].cadeauPour;
-  },2000);
-}
+    papier.textContent = tabPrenomsCadeau[cpt].cadeauPour;
+    cpt++;
+  }, 2000);
+  setTimeout(() => {
+  if(cpt >= tabPrenomsCadeau.length) {
+    affichageText.textContent = `🎄🎅Tirage terminé joyeux Noel !🎅🎄`;
+    btnOui.style.display = "none";
+  } else {
+      papier.style.top = "40vh";
+      papier.textContent = "";
+      affichageText.textContent = `🎄🎅${tabPrenomsCadeau[cpt].piocheur}, es-tu seul devant l'ordinateur ?🎅🎄`;
+    }
+    affichage.style.display = "block";
+    gant.style.display = "none";
+    papier.style.display = "none";
+  }, 10000);
+};
 
+btnOui.addEventListener("click", () => {
+  setTimeout(animation, 500);
+});

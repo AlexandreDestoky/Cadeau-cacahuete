@@ -4,13 +4,16 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: tomato;
+  background: url("noel.webp") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .formulaire {
-  background-color: lightblue;
-  width: 40%;
+  background-color: #146b3a;
+  width: 60%;
   margin: 20px auto;
+  padding: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
 }
 
 .ajouter {
@@ -24,49 +27,97 @@ body {
 input {
   display: block;
   margin: 10px auto;
-  width: 100%;
+  width: 80%;
   height: 50px;
   font-size: 30px;
+}
+
+input[type="submit"] {
+  background-color: #bb2528;
+  border: none;
+  border-radius: 5px;
+  color: #f8b229;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+input[type="submit"]:hover {
+  border: 5px solid #f8b229;
+  /* background-color: #EA4630; */
+  color: #00b300;
+}
+.fa-plus-circle {
+  color: white;
+  cursor: pointer;
+}
+
+.fa-plus-circle:hover {
+  color: #bb2528;
 }
 
 .gant {
   background: url("gant.png");
   height: 70vh;
   width: 80%;
-  opacity: 0;
   transition: all 1000ms;
+  position: absolute;
+  top: 30vh;
+  left: 10%;
+  display: none;
 }
-
 
 .papier {
   background: url("papier.png");
-  height: 25vh;
+  height: 30vh;
   width: 50%;
-  line-height: 25vh;
+  line-height: 30vh;
   text-align: center;
   user-select: none;
-  position: relative;
+  position: absolute;
+  left: 25%;
   z-index: -1;
-  top:25vh;
-  opacity: 0;
+  top: 40vh;
   transition: all 3000ms;
   font-size: 40px;
   font-family: cursive;
-  
+  display: none;
 }
 
-.gant, .papier {
+.gant,
+.papier {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   margin: auto;
-  border:1px solid black;
 }
 
 .affichage {
   position: absolute;
-  top:50vh;
-  background-color: lightgreen;
+  display: none;
+  top: 30vh;
+  background-color: #165b33;
+  font-size: 30px;
+  font-family: cursive;
   width: 100%;
   text-align: center;
+  border-top: 5px solid #f8b229;
+  border-bottom: 5px solid #f8b229;
+  color: #ccc;
+}
+
+.affichage button {
+  outline: none;
+  font-size: 50px;
+  padding: 20px 40px;
+  border-radius: 10px;
+  margin: 15px;
+  border: 5px solid #bb2528;
+  background-color: #f8b229;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.affichage button:hover {
+  border: 5px solid #f8b229;
+  background-color: #ea4630;
+  color: #f8b229;
 }
