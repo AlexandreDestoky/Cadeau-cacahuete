@@ -4,9 +4,10 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: tomato;
 }
 
-.container {
+.formulaire {
   background-color: lightblue;
   width: 40%;
   margin: 20px auto;
@@ -22,12 +23,50 @@ body {
 
 input {
   display: block;
-  margin:10px auto;
+  margin: 10px auto;
   width: 100%;
   height: 50px;
   font-size: 30px;
+}
 
+.gant {
+  background: url("gant.png");
+  height: 70vh;
+  width: 80%;
+  opacity: 0;
+  transition: all 1000ms;
 }
 
 
+.papier {
+  background: url("papier.png");
+  height: 25vh;
+  width: 50%;
+  line-height: 25vh;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  z-index: -1;
+  top:25vh;
+  opacity: 0;
+  transition: all 3000ms;
+  font-size: 40px;
+  font-family: cursive;
+  
+}
 
+.gant, .papier {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+  border:1px solid black;
+}
+
+.affichage {
+  position: absolute;
+  top:50vh;
+  background-color: lightgreen;
+  width: 100%;
+  text-align: center;
+}
