@@ -49,6 +49,31 @@ let cadeau = (tableau) => {
   return tabCadeau;
 };
 
+//ANIMATION DU GANT ET DU PAPIER AU CLICK SUR LE BOUTON OUI
+let animation = () => {
+  gant.style.display = "block";
+  papier.style.display = "block";
+  affichage.style.display = "none";
+  setTimeout(() => {
+    papier.style.top = "0px";
+    papier.textContent = tabPrenomsCadeau[cpt].cadeauPour;
+    cpt++;
+  }, 2000);
+  setTimeout(() => {
+    if (cpt >= tabPrenomsCadeau.length) {
+      affichageText.textContent = `🎄🎅Tirage terminé joyeux Noel !🎅🎄`;
+      btnOui.style.display = "none";
+    } else {
+      papier.style.top = "40vh";
+      papier.textContent = "";
+      affichageText.textContent = `🎄🎅${tabPrenomsCadeau[cpt].piocheur}, es-tu seul devant l'ordinateur ?🎅🎄`;
+    }
+    affichage.style.display = "block";
+    gant.style.display = "none";
+    papier.style.display = "none";
+  }, 10000);
+};
+
 //Ajout d'un input quand on clique sur le +
 ajouter.addEventListener("click", () => {
   let input = document.createElement("input");
@@ -84,30 +109,7 @@ formulaire.addEventListener("submit", (e) => {
   }
 });
 
-let animation = () => {
-  gant.style.display = "block";
-  papier.style.display = "block";
-  affichage.style.display = "none";
-  setTimeout(() => {
-    papier.style.top = "0px";
-    papier.textContent = tabPrenomsCadeau[cpt].cadeauPour;
-    cpt++;
-  }, 2000);
-  setTimeout(() => {
-  if(cpt >= tabPrenomsCadeau.length) {
-    affichageText.textContent = `🎄🎅Tirage terminé joyeux Noel !🎅🎄`;
-    btnOui.style.display = "none";
-  } else {
-      papier.style.top = "40vh";
-      papier.textContent = "";
-      affichageText.textContent = `🎄🎅${tabPrenomsCadeau[cpt].piocheur}, es-tu seul devant l'ordinateur ?🎅🎄`;
-    }
-    affichage.style.display = "block";
-    gant.style.display = "none";
-    papier.style.display = "none";
-  }, 10000);
-};
-
+//Quand on click sur le bouton OUI
 btnOui.addEventListener("click", () => {
   setTimeout(animation, 500);
 });

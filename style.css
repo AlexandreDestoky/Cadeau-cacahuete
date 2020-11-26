@@ -1,3 +1,4 @@
+/* DEFAULT */
 * {
   box-sizing: border-box;
 }
@@ -8,6 +9,8 @@ body {
   background-size: cover;
 }
 
+
+/* FORMULAIRE */
 .formulaire {
   background-color: #146b3a;
   width: 60%;
@@ -19,7 +22,6 @@ body {
 .ajouter {
   text-align: center;
   font-size: 40px;
-  cursor: pointer;
   margin: auto;
   padding: 5px;
 }
@@ -38,13 +40,14 @@ input[type="submit"] {
   border-radius: 5px;
   color: #f8b229;
   font-family: Georgia, "Times New Roman", Times, serif;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
   border: 5px solid #f8b229;
-  /* background-color: #EA4630; */
   color: #00b300;
 }
+
 .fa-plus-circle {
   color: white;
   cursor: pointer;
@@ -54,6 +57,8 @@ input[type="submit"]:hover {
   color: #bb2528;
 }
 
+
+/* GANT + PAPIER */
 .gant {
   background: url("gant.png");
   height: 70vh;
@@ -90,6 +95,8 @@ input[type="submit"]:hover {
   margin: auto;
 }
 
+
+/* TEXTE VERT AVEC BOUTON */
 .affichage {
   position: absolute;
   display: none;
